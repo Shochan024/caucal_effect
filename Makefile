@@ -1,0 +1,2 @@
+prepare:
+	brew install gdrive
