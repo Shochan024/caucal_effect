@@ -12,7 +12,7 @@ import numpy as np
 ####################
 #   データの読み込み  #
 ####################
-df = pd.read_csv("../datas/mail_marketing_biased.csv")
+df = pd.read_csv("../../datas/mail_marketing_biased.csv")
 
 ####################
 #     ATEの算出     #
@@ -41,7 +41,7 @@ print( "Bias" , y_0_z_1 - y_0_z_0 )
 ####################
 #   データの読み込み  #
 ####################
-df_RCT = pd.read_csv("../datas/mail_marketing_RCT.csv")
+df_RCT = pd.read_csv("../../datas/mail_marketing_RCT.csv")
 
 ####################
 #     ATEの算出     #

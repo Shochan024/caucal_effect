@@ -31,8 +31,8 @@ def explor( df ):
     print( "ATE :", ATE , "Bias :" , Bias , "Real Effect :",  ATE-Bias )
 
 
-df_biased = pd.read_csv("../datas/mail_marketing_biased.csv")
-df_RCT = pd.read_csv("../datas/mail_marketing_RCT.csv")
+df_biased = pd.read_csv("../../datas/mail_marketing_biased.csv")
+df_RCT = pd.read_csv("../../datas/mail_marketing_RCT.csv")
 
 
 explor( df=df_biased )
