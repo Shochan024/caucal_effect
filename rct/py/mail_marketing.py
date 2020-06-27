@@ -21,7 +21,7 @@ summary_by_segment = male_df.groupby("treatment").mean()
 
 
 ####################
-#        #
+#       t検定       #
 ####################
 mens_mail = np.array( male_df[male_df.treatment == 1].spend )
 no_mail = np.array( male_df[male_df.treatment == 0].spend )
