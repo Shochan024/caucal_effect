@@ -51,5 +51,5 @@ no_mail <- male_df %>%
   pull( spend )
 
 #RCTによりサンプリングされていることから、conversionの差はメールによってのみもたらされたと解釈できる
-rct_ttest <- t.test( mens_mail , no_mail , var.equal = TRUE )
+rct_ttest <- t.test( mens_mail , no_mail , var.equal = TRUE ) #分散が等しいことを仮定した検定
 ```
