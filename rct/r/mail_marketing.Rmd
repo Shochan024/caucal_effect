@@ -1,0 +1,29 @@
+---
+title: "mail_markering"
+author: "sho ishidu"
+date: "6/28/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library("tidyverse")
+#Rでは複数行コメントアウトができないので、擬似的にコメントアウト
+if(0){
+  "
+  tidyverseは、以下を主とする様々なパッケージをまとめたパッケージ集
+  ・deplyr
+  ・ggplot2
+  ・stringr
+  "
+}
+```
+
+```{r setup, include=FALSE}
+library("tidyverse")
+email_data <- read_csv("../../datas/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv")
+
+#パイプ記法ですっきりと書く
+male_df <- email_data %>%
+  filter( segment != "Womens E-Mail" ) %>%
+  mutate( treatment = if_else( segment == "Mens E-Mail" , 1 , 0 ) )
+```
