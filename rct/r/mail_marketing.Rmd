@@ -20,10 +20,36 @@ if(0){
 
 ```{r setup, include=FALSE}
 library("tidyverse")
+#RCTによってサンプリングされているデータセット
 email_data <- read_csv("../../datas/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv")
 
 #パイプ記法ですっきりと書く
 male_df <- email_data %>%
   filter( segment != "Womens E-Mail" ) %>%
-  mutate( treatment = if_else( segment == "Mens E-Mail" , 1 , 0 ) )
+  mutate( treatment = if_else( segment == "Mens E-Mail" , 1 , 0 ) ) #介入を意味するtreatement列を追加。Mens EMailなら1、それ以外なら0
+```
+
+```{r setup, include=FALSE}
+#グループ集計
+summary_by_segment <- male_df %>%
+  group_by( treatment ) %>% #Treatmentでグルーピング
+  summarise( conversion_rate = mean( conversion ), #Conversion Rateの平均値
+             spend_mean = mean( spend ), #消費額の平均値
+             count = n())
+```
+
+```{r setup, include=FALSE}
+#t検定
+
+#男性向けメールが配信されたブループの購買データを得る
+mens_mail <- male_df %>% #male_dfを取得し
+  filter( treatment == 1 ) %>% #filterでgroupを抽出し
+  pull(spend) #pullでベクトル化
+
+no_mail <- male_df %>%
+  filter( treatment == 0 ) %>%
+  pull( spend )
+
+#RCTによりサンプリングされていることから、conversionの差はメールによってのみもたらされたと解釈できる
+rct_ttest <- t.test( mens_mail , no_mail , var.equal = TRUE )
 ```
