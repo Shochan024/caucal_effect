@@ -11,13 +11,12 @@ warnings.simplefilter('ignore')
 df = pd.read_csv("../../datas/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv")
 male_df = df[df.segment != "Womens E-Mail"] #演習通り、女性のデータを除外する
 male_df["treatment"] = np.where( male_df.segment == "Mens E-Mail" , 1,0 )
-del df
+del df #不要なメモリを解放
 
 ####################
 #   グループ集計     #
 ####################
 summary_by_segment = male_df.groupby("treatment").mean()
-#print( summary_by_segment[["spend","conversion"]] )
 
 
 ####################
