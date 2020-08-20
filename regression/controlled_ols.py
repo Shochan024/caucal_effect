@@ -24,6 +24,13 @@ male_df["channelMultichannel"] = np.where( male_df.channel == "Multichannel" , 1
 ######################
 X = male_df[[ "treatment" , "recency" , "channelPhone" \
 , "channelWeb" , "channelMultichannel" , "history" ]]
+
+#二乗項の追加の仕方
+#X["recency*channelPhone"] = X["recency"]**2
+
+#交差項の追加の仕方
+#X["recency*channelPhone"] = X["recency"] * X["channelPhone"]
+
 X = sm.add_constant( X )
 y = male_df[["spend"]]
 
